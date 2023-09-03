@@ -1,10 +1,17 @@
 import axios from 'axios';
 
+const PERSONS_URL = process.env.NODE_ENV === 'production'
+  ? 'https://table-virtualized-scroll.vercel.app'
+  : 'http://localhost:3000';
+
+const PERSONS_INFO_URL = process.env.NODE_ENV === 'production'
+  ? 'https://table-virtualized-scroll.vercel.app'
+  : 'http://localhost:3000';
+
 export const getPersons = (start:number, size:number, globalFilter:string) => {
   return axios({
     method: 'post',
-    // url: 'http://localhost:3000/api/persons',
-    url: 'https://table-virtualized-scroll.vercel.app/api/persons',
+    url: `${PERSONS_URL}/api/persons`,
     data: {
       start,
       size,
@@ -25,8 +32,7 @@ export const getPersons = (start:number, size:number, globalFilter:string) => {
 export const getPersonInfo = (personId:string) => {
   return axios({
     method: 'post',
-    // url: 'http://localhost:3000/api/personInfo',
-    url: 'https://table-virtualized-scroll.vercel.app/api/personInfo',
+    url: `${PERSONS_INFO_URL}/api/personInfo`,
     data: { personId },
   })
     .then((response) => response.data)
