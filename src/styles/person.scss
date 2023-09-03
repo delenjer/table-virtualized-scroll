@@ -1,0 +1,15 @@
+.person-list {
+  list-style-type: none;
+  margin-top: 20px;
+
+  &__item {
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+    }
+
+    &--title {
+      font-weight: 600;
+      margin-right: 10px;
+    }
+  }
+}
