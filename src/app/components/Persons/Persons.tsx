@@ -11,7 +11,7 @@ export const Persons = () => {
   const [globalFilter, setGlobalFilter] = useState<string>('');
 
   const searchValue = () => {
-    if (globalFilter.length >= 3) {
+    if (globalFilter?.length >= 3) {
       return globalFilter;
     }
 
