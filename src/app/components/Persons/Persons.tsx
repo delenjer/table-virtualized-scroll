@@ -10,13 +10,21 @@ const fetchSize = 25;
 export const Persons = () => {
   const [globalFilter, setGlobalFilter] = useState<string>('');
 
+  const searchValue = () => {
+    if (globalFilter.length >= 3) {
+      return globalFilter;
+    }
+
+    return;
+  }
+
   const { data, fetchNextPage, isError, isFetching, isLoading } =
     useInfiniteQuery(
-      ['table-data', globalFilter],
+      ['table-data', searchValue()],
       async ({ pageParam = 0 }) => {
         const start = pageParam * fetchSize;
 
-        return getPersons(start, fetchSize, globalFilter);
+        return getPersons(start, fetchSize, searchValue());
       },
       {
         getNextPageParam: (_lastGroup, groups) => groups.length,

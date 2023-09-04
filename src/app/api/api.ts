@@ -8,7 +8,7 @@ const PERSONS_INFO_URL = process.env.NODE_ENV === 'production'
   ? 'https://table-virtualized-scroll.vercel.app'
   : 'http://localhost:3000';
 
-export const getPersons = (start:number, size:number, globalFilter:string) => {
+export const getPersons = (start:number, size:number, globalFilter:string | undefined) => {
   return axios({
     method: 'post',
     url: `${PERSONS_URL}/api/persons`,
